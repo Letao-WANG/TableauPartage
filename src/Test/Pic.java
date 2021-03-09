@@ -19,6 +19,7 @@ public class Pic extends JFrame{
         Graphics g = this.getGraphics();
         //设置鼠标监听器
         System.out.println("test");
+        System.out.println("test2");
         this.addMouseListener(new UIListener(g));
     }
 }
