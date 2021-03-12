@@ -1,24 +1,28 @@
 package View;
 
+import Controller.MessageController;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MessageView extends JFrame implements ActionListener {
-    JLabel label;
+    MessageController messageController;
+    JTextArea textShow;
     JTextArea text;
     JButton button;
-    public MessageView() {
-        label = new JLabel();
+    public MessageView(MessageController messageController) {
+        this.messageController = messageController;
+        textShow = new JTextArea();
         text = new JTextArea(10, 10);
         button = new JButton("Send");
         button.addActionListener(this);
 
-        label.setBounds(0,0,200,400);
+        textShow.setBounds(0,0,200,400);
         text.setBounds(0,400,200,50);
         button.setBounds(100,450,100,30);
 
-        add(label);
+        add(textShow);
         add(text);
         add(button);
 
@@ -32,11 +36,11 @@ public class MessageView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String s = actionEvent.getActionCommand();
         if (s.equals("Send")) {
-            label.setText(text.getText());
+            messageController.sendMessage(text.getText());
         }
     }
 
-    public static void main(String[] args) {
-        new MessageView();
+    public void setText(String text) {
+        this.textShow.setText(text);
     }
 }

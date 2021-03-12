@@ -1,5 +1,7 @@
 package Model.Sockets;
 
+import Controller.MessageController;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -11,6 +13,10 @@ import java.net.UnknownHostException;
  */
 
 public class BroadcastReceiver extends Thread {
+    MessageController messageController;
+    public BroadcastReceiver(MessageController messageController) {
+        this.messageController = messageController;
+    }
     @Override
     public void run() {
         try {
@@ -21,7 +27,7 @@ public class BroadcastReceiver extends Thread {
             while (true) {
                 DatagramPacket datagramPacket = new DatagramPacket(arb, arb.length);
                 s.receive(datagramPacket);
-                System.out.println(new String(arb));
+                messageController.setText(new String(arb));
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
