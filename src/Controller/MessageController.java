@@ -6,13 +6,12 @@ import View.MessageView;
 import java.io.IOException;
 
 public class MessageController {
-    private Server server;
     private Client client;
     private MessageView messageView;
 
     public MessageController() throws IOException {
-        this.server = new Server();
         this.client = new Client();
+        client.start();
 //        this.messageView = new MessageView();
     }
 
