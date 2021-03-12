@@ -21,7 +21,24 @@ public class Client extends Thread {
     @Override
     public void run() {
         new BroadcastReceiver(messageController).start();
-        sendMessage("Welcome to new user !");
+
+        /*
+         * After a Client was created, send message to update
+         * Almost equal with sendMessage()
+         */
+        try {
+            InetAddress address = InetAddress.getByName("localhost");
+            int port = 8800;
+            String message = "Welcome to new user !" + "\n";
+            byte[] data = message.getBytes();
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+            DatagramSocket socket = new DatagramSocket();
+            socket.send(packet);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendMessage(String mess) {

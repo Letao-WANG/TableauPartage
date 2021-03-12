@@ -4,6 +4,10 @@ import Model.Sockets.Client;
 import View.MessageView;
 import java.io.IOException;
 
+/**
+ * Controller Of Message
+ * Multiple MessageController can exist at the same time
+ */
 public class MessageController {
     private Client client;
     private MessageView messageView;

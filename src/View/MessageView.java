@@ -1,45 +1,61 @@
 package View;
 
 import Controller.MessageController;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class MessageView extends JFrame implements ActionListener {
+/**
+ * View of Message
+ */
+
+public class MessageView extends JFrame{
     MessageController messageController;
     JTextArea textShow;
     JTextArea text;
-    JButton button;
+    JScrollPane scroll;
     public MessageView(MessageController messageController) {
         this.messageController = messageController;
         textShow = new JTextArea();
         text = new JTextArea(10, 10);
-        button = new JButton("Send");
-        button.addActionListener(this);
+        scroll = new JScrollPane();
 
-        textShow.setBounds(0,0,200,400);
-        text.setBounds(0,400,200,50);
-        text.setBackground(Color.GRAY);
-        button.setBounds(100,450,100,30);
+        /*
+         * add listener to text input
+         */
+        text.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if((char)e.getKeyChar()==KeyEvent.VK_ENTER) {
+                    messageController.sendMessage(text.getText());
+                    text.setText("");
+                    scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum());
+                }
+            }
+        });
 
-        add(textShow);
+        scroll.setBounds(10,10,180,380);
+        scroll.setBackground(Color.WHITE);
+        textShow.setBounds(10,10,180,380);
+        textShow.setMargin( new Insets(10,10,10,10) );
+        textShow.setLineWrap(true);
+        textShow.setEditable(false);
+        scroll.setBorder(null);
+        scroll.setViewportView(textShow);
+
+        text.setBounds(10,400,180,80);
+        text.setMargin( new Insets(10,10,10,10) );
+
+        add(scroll);
         add(text);
-        add(button);
 
         setLayout(null);
         setBounds(0,0,200,500);
+        getContentPane().setBackground(new Color(217, 217, 217));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        String s = actionEvent.getActionCommand();
-        if (s.equals("Send")) {
-            messageController.sendMessage(text.getText());
-        }
     }
 
     public void setText(String text) {
