@@ -6,14 +6,22 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
-public class BroadcastSender extends Thread{
+/**
+ * After the UDP signal from the client is detected in Server,
+ * this class send the updated information to all clients in the group.
+ */
+public class BroadcastSender extends Thread {
     private String sendMessage;
-    public BroadcastSender(String sendMessage){
+
+    /**
+     * @param sendMessage the updated information from Server
+     */
+    public BroadcastSender(String sendMessage) {
         this.sendMessage = sendMessage;
     }
 
     @Override
-    public void run(){
+    public void run() {
         int port = 6789;
         try {
             InetAddress inetAddress = InetAddress.getByName("228.5.6.7");

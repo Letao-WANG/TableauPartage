@@ -1,11 +1,15 @@
 package Model.Sockets;
 
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
+
+/**
+ * The user uses Client which can open multiple.
+ * When a new user enters, information is shared with the other old users.
+ */
 
 public class Client {
     public Client() throws IOException {
@@ -18,11 +22,8 @@ public class Client {
         while (scan.hasNextLine()) {
             String message = "user : " + scan.nextLine() + "\n";
             byte[] data = message.getBytes();
-            //2.创建数据报，包含发送的数据信息
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
-            //3.创建DatagramSocket对象
             DatagramSocket socket = new DatagramSocket();
-            //4.向服务器端发送数据报
             socket.send(packet);
         }
     }

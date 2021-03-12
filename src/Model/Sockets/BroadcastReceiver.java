@@ -6,6 +6,10 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
+/**
+ * Detect, receive broadcast signal from Server and print out the updated information.
+ */
+
 public class BroadcastReceiver extends Thread {
     @Override
     public void run() {
@@ -13,7 +17,7 @@ public class BroadcastReceiver extends Thread {
             InetAddress group = InetAddress.getByName("228.5.6.7");
             MulticastSocket s = new MulticastSocket(6789);
             byte[] arb = new byte[1024];
-            s.joinGroup(group);//加入该组
+            s.joinGroup(group);
             while (true) {
                 DatagramPacket datagramPacket = new DatagramPacket(arb, arb.length);
                 s.receive(datagramPacket);
