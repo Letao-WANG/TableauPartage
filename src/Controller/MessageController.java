@@ -9,9 +9,9 @@ public class MessageController {
     private MessageView messageView;
 
     public MessageController() throws IOException {
+        this.messageView = new MessageView(this);
         this.client = new Client(this);
         client.start();
-        this.messageView = new MessageView(this);
     }
 
     public void sendMessage(String mess){

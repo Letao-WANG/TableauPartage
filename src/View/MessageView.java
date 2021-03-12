@@ -3,6 +3,7 @@ package View;
 import Controller.MessageController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,7 @@ public class MessageView extends JFrame implements ActionListener {
 
         textShow.setBounds(0,0,200,400);
         text.setBounds(0,400,200,50);
+        text.setBackground(Color.GRAY);
         button.setBounds(100,450,100,30);
 
         add(textShow);
