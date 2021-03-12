@@ -24,7 +24,6 @@ public class MainView extends JFrame{
         JPanel panel2 = new JPanel();
         panel2.setBounds(200,0,500,400);
         panel2.setBackground(Color.RED);
-//        panel2.setPreferredSize(new Dimension(300,300));
         add(panel2);
 
         JPanel panel3 = new JPanel();
@@ -36,25 +35,6 @@ public class MainView extends JFrame{
         panel4.setBounds(200,400,500,100);
         panel4.setBackground(Color.CYAN);
         add(panel4);
-
-//        JFrame f1 = new JFrame("f1");
-//        JFrame f2= new JFrame("f2");
-
-
-
-//        messageView = new MessageView();
-//        messageView.setBounds(0, 0, 200, 600);
-//        add(messageView);
-//
-//        tableView = new TableView();
-
-//        JLabel label = new JLabel("test");
-//
-//        JPanel panelMessage = new JPanel(new BorderLayout());
-//        panelMessage.setBounds(0, 0, 200,400);
-//        panelMessage.setBackground(Color.red);
-//        panelMessage.add(label, BorderLayout.NORTH);
-//        this.add(panelMessage);
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Test;
+package PaintDemo;
 
 import java.awt.Graphics;
 
