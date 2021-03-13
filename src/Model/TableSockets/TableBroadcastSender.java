@@ -9,6 +9,10 @@ import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+/**
+ * After the UDP signal from the table client is detected in table Server,
+ * this class send the updated shape list to all clients in the group.
+ */
 public class TableBroadcastSender extends Thread {
     private ArrayList<Shape> shapeList;
 

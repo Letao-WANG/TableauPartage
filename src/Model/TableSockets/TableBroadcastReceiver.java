@@ -10,6 +10,9 @@ import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+/**
+ * Detect, receive broadcast signal from table Server and draw these shapes.
+ */
 public class TableBroadcastReceiver extends Thread {
     private TableController tableController;
 

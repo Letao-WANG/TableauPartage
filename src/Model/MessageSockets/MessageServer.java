@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.net.SocketException;
 
 /**
- * The server, of which only one can exist at a time.
- * And it is responsible for the storage and processing of information for the client.
+ * The message server, of which only one can exist at a time.
+ * And it is responsible for the storage and processing of chat information for the client.
  */
 public class MessageServer extends Thread {
     public void run() {

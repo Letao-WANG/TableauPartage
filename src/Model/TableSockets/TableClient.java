@@ -10,6 +10,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+/**
+ * The user uses table Client which can open multiple.
+ * When a new user enters, shapes are shared with the other old users.
+ */
 public class TableClient extends Thread {
 
     private TableController tableController;
@@ -24,7 +28,8 @@ public class TableClient extends Thread {
         /*
          * After a Client was created, send a null shape to update
          */
-        addShape(new Line(10, 10, 0, 0, " ", Color.WHITE));
+        Shape shape = new Line(10, 10, 20, 20, "Line", Color.BLACK);
+        addShape(shape);
     }
 
     public void addShape(Shape shape) {

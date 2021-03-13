@@ -8,6 +8,10 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
 
+/**
+ * The table server, of which only one can exist at a time.
+ * And it is responsible for the storage and processing of shape list for the client.
+ */
 public class TableServer extends Thread {
     public void run() {
         ArrayList<Shape> shapeList = new ArrayList<Shape>();

@@ -18,15 +18,16 @@ public class TableView extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        JPanel panelNorth = new JPanel();
-        JPanel panelSouth = new JPanel();
+        JPanel panelShape = new JPanel();
+        JPanel panelDraw = new JPanel();
+        JPanel panelColor = new JPanel();
 
-        this.setBackground(Color.white);
+        panelDraw.setBackground(Color.white);
 
-        this.addMouseListener(listener);
-        frame.add(this, BorderLayout.CENTER);
-        frame.add(panelNorth, BorderLayout.NORTH);
-        frame.add(panelSouth, BorderLayout.SOUTH);
+        panelDraw.addMouseListener(listener);
+        frame.add(panelShape, BorderLayout.NORTH);
+        frame.add(panelDraw, BorderLayout.CENTER);
+        frame.add(panelColor, BorderLayout.SOUTH);
 
         // Add shape button
         String[] shapes = {"Line", "Rect", "Oval", "Brush", "Text", "Eraser", "Undo"};
@@ -37,7 +38,7 @@ public class TableView extends JPanel {
             button.setBorder(null);
             button.setPreferredSize(new Dimension(60, 25));
 
-            panelNorth.add(button);
+            panelShape.add(button);
             button.addActionListener(listener);
         }
 
@@ -49,13 +50,13 @@ public class TableView extends JPanel {
             button.setBackground(color);
             button.setPreferredSize(new Dimension(40, 25));
             button.setBorder(null);
-            panelSouth.add(button);
+            panelColor.add(button);
             button.addActionListener(listener);
         }
 
         frame.setVisible(true);
         // get graphics
-        Graphics g = this.getGraphics();
+        Graphics g = panelDraw.getGraphics();
         // init graphics
         listener.setGr(g);
     }

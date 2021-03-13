@@ -7,9 +7,8 @@ import java.net.*;
 
 /**
  * The user uses Client which can open multiple.
- * When a new user enters, information is shared with the other old users.
+ * When a new user enters, chat information is shared with the other old users.
  */
-
 public class MessageClient extends Thread {
     MessageController messageController;
 
