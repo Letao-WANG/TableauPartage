@@ -1,12 +1,22 @@
 package Model.TableSockets;
 
+import Controller.TableController;
+import Model.Shapes.Shape;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
-public class TableBroadcastReceiver extends Thread{
+public class TableBroadcastReceiver extends Thread {
+    private TableController tableController;
+
+    public TableBroadcastReceiver(TableController tableController) {
+        this.tableController = tableController;
+    }
+
     @Override
     public void run() {
         try {
@@ -17,7 +27,8 @@ public class TableBroadcastReceiver extends Thread{
             while (true) {
                 DatagramPacket datagramPacket = new DatagramPacket(arb, arb.length);
                 s.receive(datagramPacket);
-                System.out.println(Util.deserialize(arb));
+                ArrayList<Shape> shapeList = (ArrayList<Shape>) Util.deserialize(arb);
+                tableController.draw(shapeList);
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();

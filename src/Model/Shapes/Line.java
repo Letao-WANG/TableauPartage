@@ -3,7 +3,7 @@ package Model.Shapes;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Line extends Shape implements Serializable {
+public class Line extends Shape{
     public Line() {
     }
 
@@ -15,5 +15,10 @@ public class Line extends Shape implements Serializable {
         g.setColor(color);
         g.drawLine(x1, y1, x2, y2);
     }
+
+    public int getX1(){
+        return x1;
+    }
+
 
 }

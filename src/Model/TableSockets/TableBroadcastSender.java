@@ -9,11 +9,11 @@ import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-public class TableBroadcastSender extends Thread{
+public class TableBroadcastSender extends Thread {
     private ArrayList<Shape> shapeList;
 
     /**
-     * @param shapeList the updated information from Server
+     * @param shapeList the updated list of Shape from Server
      */
     public TableBroadcastSender(ArrayList<Shape> shapeList) {
         this.shapeList = shapeList;

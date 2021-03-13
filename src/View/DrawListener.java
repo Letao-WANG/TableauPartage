@@ -1,5 +1,6 @@
 package View;
 
+import Controller.TableController;
 import Model.Shapes.Line;
 import Model.Shapes.Oval;
 import Model.Shapes.Rect;
@@ -11,13 +12,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class DrawListener implements MouseListener, ActionListener {
+    private TableController tableController;
     private int x1, y1, x2, y2;
     private String name;
     private Graphics g;
     private Color color;
-    private int index = 0;
+
+    public DrawListener(TableController tableController) {
+        this.tableController = tableController;
+    }
 
     // init graphics
     public void setGr(Graphics g) {
@@ -41,16 +47,19 @@ public class DrawListener implements MouseListener, ActionListener {
         y2 = mouseEvent.getY();
         // draw
         if ("Line".equals(name)) {
-            g.drawLine(x1, y1, x2, y2);
+//            g.drawLine(x1, y1, x2, y2);
             Shape line = new Line(x1, y1, x2, y2, name, color);
+            tableController.addShape(line);
         }
         if ("Rect".equals(name)) {
             g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape rect = new Rect(x1, y1, x2, y2, name, color);
+            tableController.addShape(rect);
         }
         if ("Oval".equals(name)) {
             g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape oval = new Oval(x1, y1, x2, y2, name, color);
+            tableController.addShape(oval);
         }
     }
 
@@ -76,5 +85,13 @@ public class DrawListener implements MouseListener, ActionListener {
         else {
             name = actionEvent.getActionCommand();
         }
+    }
+
+    public void draw(ArrayList<Shape> shapeList) {
+        shapeList.forEach((shape) -> {
+            if (shape != null) {
+                shape.drawShape(g);
+            }
+        });
     }
 }

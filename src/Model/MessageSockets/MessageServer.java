@@ -1,8 +1,7 @@
-package Model.Sockets;
+package Model.MessageSockets;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.io.IOException;
 import java.net.SocketException;
 
@@ -10,7 +9,7 @@ import java.net.SocketException;
  * The server, of which only one can exist at a time.
  * And it is responsible for the storage and processing of information for the client.
  */
-public class Server extends Thread {
+public class MessageServer extends Thread {
     public void run() {
         /*
          * Which is shown in the text label GUI
@@ -28,7 +27,7 @@ public class Server extends Thread {
                 socket.receive(packet);
                 String info = new String(data, 0, packet.getLength());
                 message += info;
-                new BroadcastSender(message).start();
+                new MessageBroadcastSender(message).start();
             }
         } catch (SocketException e) {
             e.printStackTrace();
@@ -38,6 +37,6 @@ public class Server extends Thread {
     }
 
     public static void main(String[] args) {
-        new Server().start();
+        new MessageServer().start();
     }
 }

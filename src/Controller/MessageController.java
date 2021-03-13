@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Sockets.Client;
+import Model.MessageSockets.MessageClient;
 import View.MessageView;
 import java.io.IOException;
 
@@ -9,12 +9,12 @@ import java.io.IOException;
  * Multiple MessageController can exist at the same time
  */
 public class MessageController {
-    private Client client;
+    private MessageClient client;
     private MessageView messageView;
 
     public MessageController() throws IOException {
         this.messageView = new MessageView(this);
-        this.client = new Client(this);
+        this.client = new MessageClient(this);
         client.start();
     }
 

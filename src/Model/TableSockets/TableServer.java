@@ -1,13 +1,14 @@
 package Model.TableSockets;
 
 import Model.Shapes.Shape;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
 
-public class TableServer extends Thread{
+public class TableServer extends Thread {
     public void run() {
         ArrayList<Shape> shapeList = new ArrayList<Shape>();
 
@@ -17,13 +18,12 @@ public class TableServer extends Thread{
             DatagramPacket packet = new DatagramPacket(data, data.length);
 
             /*
-             * Send updated pe array to all Client each time a new Client enters or a Client draw a new shape
+             * Send updated shape array to all Client each time a new Client enters or a Client draw a new shape
              */
             while (true) {
                 socket.receive(packet);
                 Shape shape = (Shape) Util.deserialize(data);
                 shapeList.add(shape);
-                System.out.println(shapeList);
                 new TableBroadcastSender(shapeList).start();
             }
         } catch (SocketException e) {

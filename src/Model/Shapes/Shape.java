@@ -1,8 +1,9 @@
 package Model.Shapes;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Shape {
+public abstract class Shape implements Serializable {
     public int x1, y1, x2, y2;
     public String name;
     public Color color;
@@ -21,5 +22,9 @@ public abstract class Shape {
 
     public void drawShape(Graphics g) {
 
+    }
+
+    public int getX1(){
+        return this.x1;
     }
 }

@@ -1,4 +1,4 @@
-package Model.Sockets;
+package Model.MessageSockets;
 
 import Controller.MessageController;
 
@@ -12,9 +12,9 @@ import java.net.UnknownHostException;
  * Detect, receive broadcast signal from Server and print out the updated information.
  */
 
-public class BroadcastReceiver extends Thread {
+public class MessageBroadcastReceiver extends Thread {
     MessageController messageController;
-    public BroadcastReceiver(MessageController messageController) {
+    public MessageBroadcastReceiver(MessageController messageController) {
         this.messageController = messageController;
     }
     @Override
