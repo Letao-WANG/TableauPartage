@@ -1,5 +1,10 @@
 package View;
 
+import Model.Shapes.Line;
+import Model.Shapes.Oval;
+import Model.Shapes.Rect;
+import Model.Shapes.Shape;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,17 +17,11 @@ public class DrawListener implements MouseListener, ActionListener {
     private String name;
     private Graphics g;
     private Color color;
-    private Shape[] shapeArray;
     private int index = 0;
 
     // init graphics
     public void setGr(Graphics g) {
         this.g = g;
-    }
-
-    // init shape array
-    public void setSp(Shape[] shapeArray) {
-        this.shapeArray = shapeArray;
     }
 
     @Override
@@ -44,17 +43,14 @@ public class DrawListener implements MouseListener, ActionListener {
         if ("Line".equals(name)) {
             g.drawLine(x1, y1, x2, y2);
             Shape line = new Line(x1, y1, x2, y2, name, color);
-            shapeArray[index++] = line;
         }
         if ("Rect".equals(name)) {
             g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape rect = new Rect(x1, y1, x2, y2, name, color);
-            shapeArray[index++] = rect;
         }
         if ("Oval".equals(name)) {
             g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape oval = new Oval(x1, y1, x2, y2, name, color);
-            shapeArray[index++] = oval;
         }
     }
 

@@ -1,4 +1,4 @@
-package View;
+package Model.Shapes;
 
 import java.awt.*;
 

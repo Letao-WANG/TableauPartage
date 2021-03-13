@@ -1,11 +1,12 @@
 package View;
 
+import Model.Shapes.Shape;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class TableView extends JPanel {
-
-    private Shape[] shapeArray = new Shape[200];
 
     public TableView(){
         JFrame frame = new JFrame("Table");
@@ -55,15 +56,13 @@ public class TableView extends JPanel {
         Graphics g = this.getGraphics();
         // init graphics
         listener.setGr(g);
-        // init shape array
-        listener.setSp(shapeArray);
     }
 
 //    public void paint(Graphics g) {
 //        super.paint(g);
-//        for (int i = 0; i < shapeParameter.length; i++) {
-//            Shape shape = shapeParameter[i];
-//            if (shapeParameter[i] != null) {
+//        for (int i = 0; i < shapeArray.length; i++) {
+//            Shape shape = shapeArray[i];
+//            if (shapeArray[i] != null) {
 //                shape.drawShape(g);
 //            }
 //        }

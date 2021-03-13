@@ -1,8 +1,9 @@
-package View;
+package Model.Shapes;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Line extends Shape {
+public class Line extends Shape implements Serializable {
     public Line() {
     }
 
