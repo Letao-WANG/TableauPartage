@@ -4,7 +4,6 @@ import Controller.MessageController;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.Scanner;
 
 /**
  * The user uses Client which can open multiple.
@@ -34,8 +33,6 @@ public class Client extends Thread {
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();
             socket.send(packet);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,8 +47,6 @@ public class Client extends Thread {
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();
             socket.send(packet);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
