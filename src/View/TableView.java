@@ -1,17 +1,23 @@
 package View;
 
 import Controller.TableController;
+import Model.Shapes.Line;
+import Model.Shapes.Shape;
+import Model.TableSockets.TableBroadcastReceiver;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class TableView extends JPanel {
 
     private DrawListener listener;
+    private ArrayList<Shape> shapeList;
 
     public TableView(TableController tableController) {
 
         this.listener = new DrawListener(tableController);
+        this.shapeList = new ArrayList<Shape>();
 
         JFrame frame = new JFrame("Table");
         frame.setSize(500, 500);
@@ -19,14 +25,14 @@ public class TableView extends JPanel {
         frame.setLayout(new BorderLayout());
 
         JPanel panelShape = new JPanel();
-        JPanel panelDraw = new JPanel();
+//        JPanel panelDraw = new JPanel();
         JPanel panelColor = new JPanel();
 
-        panelDraw.setBackground(Color.white);
+        this.setBackground(Color.white);
 
-        panelDraw.addMouseListener(listener);
+        this.addMouseListener(listener);
         frame.add(panelShape, BorderLayout.NORTH);
-        frame.add(panelDraw, BorderLayout.CENTER);
+        frame.add(this, BorderLayout.CENTER);
         frame.add(panelColor, BorderLayout.SOUTH);
 
         // Add shape button
@@ -56,12 +62,25 @@ public class TableView extends JPanel {
 
         frame.setVisible(true);
         // get graphics
-        Graphics g = panelDraw.getGraphics();
+        Graphics g = this.getGraphics();
         // init graphics
         listener.setGr(g);
     }
 
     public DrawListener getDrawListener() {
         return this.listener;
+    }
+
+    public void setShapeList(ArrayList<Shape> shapeList) {
+        this.shapeList = shapeList;
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        shapeList.forEach((shape) -> {
+            if (shape != null) {
+                shape.drawShape(g);
+            }
+        });
     }
 }

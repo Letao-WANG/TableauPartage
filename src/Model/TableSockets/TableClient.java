@@ -28,7 +28,7 @@ public class TableClient extends Thread {
         /*
          * After a Client was created, send a null shape to update
          */
-        Shape shape = new Line(10, 10, 20, 20, "Line", Color.BLACK);
+        Shape shape = new Line(0, 0, 0, 0, "Line", Color.white);
         addShape(shape);
     }
 

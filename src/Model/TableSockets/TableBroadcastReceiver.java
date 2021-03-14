@@ -31,7 +31,8 @@ public class TableBroadcastReceiver extends Thread {
                 DatagramPacket datagramPacket = new DatagramPacket(arb, arb.length);
                 s.receive(datagramPacket);
                 ArrayList<Shape> shapeList = (ArrayList<Shape>) Util.deserialize(arb);
-                tableController.draw(shapeList);
+                tableController.setShapeList(shapeList);
+                tableController.repaint();
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();

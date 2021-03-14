@@ -86,12 +86,4 @@ public class DrawListener implements MouseListener, ActionListener {
             name = actionEvent.getActionCommand();
         }
     }
-
-    public void draw(ArrayList<Shape> shapeList) {
-        shapeList.forEach((shape) -> {
-            if (shape != null) {
-                shape.drawShape(g);
-            }
-        });
-    }
 }

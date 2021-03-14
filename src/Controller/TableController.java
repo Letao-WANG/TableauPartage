@@ -1,10 +1,12 @@
 package Controller;
 
+import Model.Shapes.Line;
 import Model.Shapes.Shape;
 import Model.TableSockets.TableClient;
 import Model.TableSockets.TableServer;
 import View.TableView;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -30,8 +32,12 @@ public class TableController {
         tableClient.addShape(shape);
     }
 
-    public void draw(ArrayList<Shape> shapeList) {
-        tableView.getDrawListener().draw(shapeList);
+    public void setShapeList(ArrayList<Shape> shapeList) {
+        tableView.setShapeList(shapeList);
+    }
+
+    public void repaint(){
+        tableView.repaint();
     }
 
 }
