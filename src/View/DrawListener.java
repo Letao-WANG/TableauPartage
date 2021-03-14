@@ -8,13 +8,10 @@ import Model.Shapes.Shape;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-public class DrawListener implements MouseListener, ActionListener {
+public class DrawListener implements MouseListener, MouseMotionListener, ActionListener {
     private TableController tableController;
     private int x1, y1, x2, y2;
     private String name;
@@ -52,12 +49,12 @@ public class DrawListener implements MouseListener, ActionListener {
             tableController.addShape(line);
         }
         if ("Rect".equals(name)) {
-            g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
+//            g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape rect = new Rect(x1, y1, x2, y2, name, color);
             tableController.addShape(rect);
         }
         if ("Oval".equals(name)) {
-            g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
+//            g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape oval = new Oval(x1, y1, x2, y2, name, color);
             tableController.addShape(oval);
         }
@@ -70,6 +67,24 @@ public class DrawListener implements MouseListener, ActionListener {
 
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+        if ("Brush".equals(name)) {
+            x2 = mouseEvent.getX();
+            y2 = mouseEvent.getY();
+            g.drawLine(x1, y1, x2, y2);
+            Shape line = new Line(x1, y1, x2, y2, name, color);
+            tableController.addShape(line);
+            x1 = x2;
+            y1 = y2;
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent) {
 
     }
 

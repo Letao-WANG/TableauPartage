@@ -8,18 +8,19 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * After the UDP signal from the table client is detected in table Server,
  * this class send the updated shape list to all clients in the group.
  */
 public class TableBroadcastSender extends Thread {
-    private ArrayList<Shape> shapeList;
+    private CopyOnWriteArrayList<Shape> shapeList;
 
     /**
      * @param shapeList the updated list of Shape from Server
      */
-    public TableBroadcastSender(ArrayList<Shape> shapeList) {
+    public TableBroadcastSender(CopyOnWriteArrayList<Shape> shapeList) {
         this.shapeList = shapeList;
     }
 

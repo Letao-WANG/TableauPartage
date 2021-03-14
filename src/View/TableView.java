@@ -8,16 +8,17 @@ import Model.TableSockets.TableBroadcastReceiver;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TableView extends JPanel {
 
     private DrawListener listener;
-    private ArrayList<Shape> shapeList;
+    private CopyOnWriteArrayList<Shape> shapeList;
 
     public TableView(TableController tableController) {
 
         this.listener = new DrawListener(tableController);
-        this.shapeList = new ArrayList<Shape>();
+        this.shapeList = new CopyOnWriteArrayList<Shape>();
 
         JFrame frame = new JFrame("Table");
         frame.setSize(500, 500);
@@ -31,6 +32,7 @@ public class TableView extends JPanel {
         this.setBackground(Color.white);
 
         this.addMouseListener(listener);
+        this.addMouseMotionListener(listener);
         frame.add(panelShape, BorderLayout.NORTH);
         frame.add(this, BorderLayout.CENTER);
         frame.add(panelColor, BorderLayout.SOUTH);
@@ -67,11 +69,11 @@ public class TableView extends JPanel {
         listener.setGr(g);
     }
 
-    public DrawListener getDrawListener() {
-        return this.listener;
-    }
+//    public DrawListener getDrawListener() {
+//        return this.listener;
+//    }
 
-    public void setShapeList(ArrayList<Shape> shapeList) {
+    public void setShapeList(CopyOnWriteArrayList<Shape> shapeList) {
         this.shapeList = shapeList;
     }
 

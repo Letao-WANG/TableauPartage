@@ -8,6 +8,7 @@ import View.TableView;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Controller Of Table
@@ -18,7 +19,11 @@ public class TableController {
     private TableClient tableClient;
 
     public TableController() {
-        new TableServer().start();
+        try {
+            new TableServer().start();
+        } catch (Exception e) {
+            System.out.println();
+        }
         this.tableView = new TableView(this);
         this.tableClient = new TableClient(this);
         tableClient.start();
@@ -32,11 +37,11 @@ public class TableController {
         tableClient.addShape(shape);
     }
 
-    public void setShapeList(ArrayList<Shape> shapeList) {
+    public void setShapeList(CopyOnWriteArrayList<Shape> shapeList) {
         tableView.setShapeList(shapeList);
     }
 
-    public void repaint(){
+    public void repaint() {
         tableView.repaint();
     }
 

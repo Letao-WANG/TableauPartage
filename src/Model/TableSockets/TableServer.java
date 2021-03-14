@@ -7,6 +7,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * The table server, of which only one can exist at a time.
@@ -14,11 +15,11 @@ import java.util.ArrayList;
  */
 public class TableServer extends Thread {
     public void run() {
-        ArrayList<Shape> shapeList = new ArrayList<Shape>();
+        CopyOnWriteArrayList<Shape> shapeList = new CopyOnWriteArrayList<Shape>();
 
         try {
             DatagramSocket socket = new DatagramSocket(8900);
-            byte[] data = new byte[4096];
+            byte[] data = new byte[40960];
             DatagramPacket packet = new DatagramPacket(data, data.length);
 
             /*
