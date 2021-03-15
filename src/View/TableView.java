@@ -1,13 +1,9 @@
 package View;
 
 import Controller.TableController;
-import Model.Shapes.Line;
 import Model.Shapes.Shape;
-import Model.TableSockets.TableBroadcastReceiver;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TableView extends JPanel {
@@ -18,7 +14,7 @@ public class TableView extends JPanel {
     public TableView(TableController tableController) {
 
         this.listener = new DrawListener(tableController);
-        this.shapeList = new CopyOnWriteArrayList<Shape>();
+        this.shapeList = new CopyOnWriteArrayList<>();
 
         JFrame frame = new JFrame("Table");
         frame.setSize(500, 500);
@@ -69,12 +65,12 @@ public class TableView extends JPanel {
         listener.setGr(g);
     }
 
-//    public DrawListener getDrawListener() {
-//        return this.listener;
-//    }
-
     public void setShapeList(CopyOnWriteArrayList<Shape> shapeList) {
         this.shapeList = shapeList;
+    }
+
+    public CopyOnWriteArrayList<Shape> getShapeList() {
+        return this.shapeList;
     }
 
     public void paint(Graphics g) {

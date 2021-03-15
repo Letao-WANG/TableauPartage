@@ -24,4 +24,16 @@ public abstract class Shape implements Serializable {
     public int getX1(){
         return this.x1;
     }
+    public int getY1(){
+        return this.y1;
+    }
+    public int getX2(){
+        return this.x2;
+    }
+    public int getY2(){
+        return this.y2;
+    }
+    
+    public String getName(){
+        return this.name;}
 }

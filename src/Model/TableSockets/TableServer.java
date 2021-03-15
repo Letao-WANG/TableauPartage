@@ -5,8 +5,6 @@ import Model.Shapes.Shape;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -15,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class TableServer extends Thread {
     public void run() {
-        CopyOnWriteArrayList<Shape> shapeList = new CopyOnWriteArrayList<Shape>();
+        CopyOnWriteArrayList<Shape> shapeList = new CopyOnWriteArrayList<>();
 
         try {
             DatagramSocket socket = new DatagramSocket(8900);
@@ -27,13 +25,16 @@ public class TableServer extends Thread {
              */
             while (true) {
                 socket.receive(packet);
-                Shape shape = (Shape) Util.deserialize(data);
-                shapeList.add(shape);
+                Object object = Util.deserialize(data);
+                if (object instanceof Shape) {
+                    shapeList.add((Shape) object);
+                } else if (object instanceof Integer) {
+                    int index = (int) object;
+                    shapeList.remove(index);
+                }
                 new TableBroadcastSender(shapeList).start();
             }
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@ public class Oval extends Shape {
 
     public void drawShape(Graphics g){
         g.setColor(color);
-        g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
+        g.fillOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
 
     }
 }

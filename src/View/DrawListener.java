@@ -1,15 +1,14 @@
 package View;
 
 import Controller.TableController;
-import Model.Shapes.Line;
-import Model.Shapes.Oval;
-import Model.Shapes.Rect;
+import Model.Shapes.*;
 import Model.Shapes.Shape;
+import Model.TableSockets.Util;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DrawListener implements MouseListener, MouseMotionListener, ActionListener {
     private TableController tableController;
@@ -36,6 +35,32 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
     public void mousePressed(MouseEvent mouseEvent) {
         x1 = mouseEvent.getX();
         y1 = mouseEvent.getY();
+
+        if ("Text".equals(name)) {
+            Shape text = new Text(x1, y1, x2, y2, name, color);
+            tableController.addShape(text);
+        }
+
+        if ("Eraser".equals(name)) {
+            CopyOnWriteArrayList<Shape> shapeList = tableController.getShapeList();
+            for (int i = shapeList.size() - 1; i >= 0; i--) {
+                Shape shape = shapeList.get(i);
+
+                if (shape.getName().equals("Line")) {
+                    float k = ((shape.getY1() - shape.getY2()) / ((float) shape.getX1() - shape.getX2()));
+                    if (Util.approximatelyEqual(y1, k * x1 + shape.getY1() - k * shape.getX1(), 8)) {
+                        tableController.removeShape(i);
+                        break;
+                    }
+                }
+
+                if (shape.getName().equals("Rect")
+                        && shape.getX1() < x1 && shape.getX2() > x1 && shape.getY1() < y1 && shape.getY2() > y1) {
+                    tableController.removeShape(i);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -44,17 +69,14 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         y2 = mouseEvent.getY();
         // draw
         if ("Line".equals(name)) {
-//            g.drawLine(x1, y1, x2, y2);
             Shape line = new Line(x1, y1, x2, y2, name, color);
             tableController.addShape(line);
         }
         if ("Rect".equals(name)) {
-//            g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape rect = new Rect(x1, y1, x2, y2, name, color);
             tableController.addShape(rect);
         }
         if ("Oval".equals(name)) {
-//            g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2 - x1), Math.abs(y2 - y1));
             Shape oval = new Oval(x1, y1, x2, y2, name, color);
             tableController.addShape(oval);
         }

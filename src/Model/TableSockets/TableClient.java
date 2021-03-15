@@ -28,8 +28,7 @@ public class TableClient extends Thread {
         /*
          * After a Client was created, send a null shape to update
          */
-        Shape shape = new Line(0, 0, 0, 0, "Line", Color.white);
-        addShape(shape);
+        addShape(null);
     }
 
     public void addShape(Shape shape) {
@@ -37,6 +36,19 @@ public class TableClient extends Thread {
             InetAddress address = InetAddress.getByName("localhost");
             int port = 8900;
             byte[] data = Util.serialize(shape);
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+            DatagramSocket socket = new DatagramSocket();
+            socket.send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeShape(int index){
+        try {
+            InetAddress address = InetAddress.getByName("localhost");
+            int port = 8900;
+            byte[] data = Util.serialize(index);
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();
             socket.send(packet);
