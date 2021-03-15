@@ -10,6 +10,8 @@ public class Server {
     public Server(){
         this.messageServer = new MessageServer();
         this.tableServer = new TableServer();
+        messageServer.start();
+        tableServer.start();
     }
 
     public static void main(String[] args) {
