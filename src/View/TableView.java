@@ -2,19 +2,23 @@ package View;
 
 import Controller.TableController;
 import Model.Shapes.Shape;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TableView extends JPanel {
 
     private DrawListener listener;
     private CopyOnWriteArrayList<Shape> shapeList;
+    private ArrayList<Integer> clientShapesIndex;
 
     public TableView(TableController tableController) {
 
         this.listener = new DrawListener(tableController);
         this.shapeList = new CopyOnWriteArrayList<>();
+        this.clientShapesIndex = new ArrayList<>();
 
         JFrame frame = new JFrame("Table");
         frame.setSize(500, 500);
@@ -34,13 +38,13 @@ public class TableView extends JPanel {
         frame.add(panelColor, BorderLayout.SOUTH);
 
         // Add shape button
-        String[] shapes = {"Line", "Rect", "Oval", "Brush", "Text", "Eraser", "Undo"};
+        String[] shapes = {"Line", "Rect", "Oval", "Brush", "Text", "Eraser", "Free Eraser", "Undo"};
         for (String shape : shapes) {
             // create button
             JButton button = new JButton(shape);
             button.setFont(new Font("Arial", Font.BOLD, 10));
             button.setBorder(null);
-            button.setPreferredSize(new Dimension(60, 25));
+            button.setPreferredSize(new Dimension(57, 25));
 
             panelShape.add(button);
             button.addActionListener(listener);
@@ -71,6 +75,18 @@ public class TableView extends JPanel {
 
     public CopyOnWriteArrayList<Shape> getShapeList() {
         return this.shapeList;
+    }
+
+    public ArrayList<Integer> getClientShapesIndex() {
+        return clientShapesIndex;
+    }
+
+    public void setLastShapeIndex(int index){
+        clientShapesIndex.add(index);
+    }
+
+    public void removeLastShapeIndex(int index) {
+        this.clientShapesIndex.remove(this.clientShapesIndex.size()-1);
     }
 
     public void paint(Graphics g) {

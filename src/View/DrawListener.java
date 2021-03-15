@@ -37,7 +37,8 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         y1 = mouseEvent.getY();
 
         if ("Text".equals(name)) {
-            Shape text = new Text(x1, y1, x2, y2, name, color);
+            String t = JOptionPane.showInputDialog("Please enter the text you want to display :");
+            Shape text = new Text(x1, y1, x2, y2, t, color);
             tableController.addShape(text);
         }
 
@@ -59,6 +60,12 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
                     tableController.removeShape(i);
                     break;
                 }
+
+                if (shape.getName().equals("Oval")
+                        && shape.getX1() < x1 && shape.getX2() > x1 && shape.getY1() < y1 && shape.getY2() > y1) {
+                    tableController.removeShape(i);
+                    break;
+                }
             }
         }
     }
@@ -70,14 +77,17 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         // draw
         if ("Line".equals(name)) {
             Shape line = new Line(x1, y1, x2, y2, name, color);
+            tableController.setLastShapeIndex(tableController.getShapeList().size());
             tableController.addShape(line);
         }
         if ("Rect".equals(name)) {
             Shape rect = new Rect(x1, y1, x2, y2, name, color);
+            tableController.setLastShapeIndex(tableController.getShapeList().size());
             tableController.addShape(rect);
         }
         if ("Oval".equals(name)) {
             Shape oval = new Oval(x1, y1, x2, y2, name, color);
+            tableController.setLastShapeIndex(tableController.getShapeList().size());
             tableController.addShape(oval);
         }
     }
@@ -97,11 +107,24 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         if ("Brush".equals(name)) {
             x2 = mouseEvent.getX();
             y2 = mouseEvent.getY();
-            g.drawLine(x1, y1, x2, y2);
+//            g.drawLine(x1, y1, x2, y2);
             Shape line = new Line(x1, y1, x2, y2, name, color);
             tableController.addShape(line);
             x1 = x2;
             y1 = y2;
+        }
+
+        if ("Free Eraser".equals(name)) {
+            // set width of line
+            ((Graphics2D) g).setStroke(new BasicStroke(20));
+            x2 = mouseEvent.getX();
+            y2 = mouseEvent.getY();
+//            g.drawLine(x1, y1, x2, y2);
+            Shape line = new Line(x1, y1, x2, y2, name, Color.white);
+            tableController.addShape(line);
+            x1 = x2;
+            y1 = y2;
+//            ((Graphics2D) g).setStroke(new BasicStroke(1));
         }
     }
 
@@ -117,6 +140,18 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             JButton button = (JButton) actionEvent.getSource();
             color = button.getBackground();
             g.setColor(color);
+        }
+        // if user click undo button
+        else if ("Undo".equals(actionEvent.getActionCommand())) {
+            int length = tableController.getClientShapesIndex().size();
+            System.out.println("length : " + length);
+            if(length == 0){
+                JOptionPane.showMessageDialog(null, "Cannot continue to Undo !");
+            }
+            else {
+                tableController.removeShape(tableController.getClientShapesIndex().get(length - 1));
+                tableController.removeLastShapeIndex(length - 1);
+            }
         }
         // if user click shape button
         else {

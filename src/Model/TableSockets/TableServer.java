@@ -17,7 +17,7 @@ public class TableServer extends Thread {
 
         try {
             DatagramSocket socket = new DatagramSocket(8900);
-            byte[] data = new byte[40960];
+            byte[] data = new byte[409600];
             DatagramPacket packet = new DatagramPacket(data, data.length);
 
             /*
@@ -29,8 +29,7 @@ public class TableServer extends Thread {
                 if (object instanceof Shape) {
                     shapeList.add((Shape) object);
                 } else if (object instanceof Integer) {
-                    int index = (int) object;
-                    shapeList.remove(index);
+                    shapeList.remove((int) object);
                 }
                 new TableBroadcastSender(shapeList).start();
             }

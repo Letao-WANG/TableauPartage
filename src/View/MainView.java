@@ -1,20 +1,25 @@
 package View;
 
+import Controller.MessageController;
+import Controller.TableController;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JFrame{
+public class MainView extends JPanel{
 
+    private JFrame main;
     private MessageView messageView;
     private TableView tableView;
 
-    public MainView() {
+    public MainView(TableController tableController, MessageController messageController) {
 
+        main = new JFrame();
         setLayout(null);
-        setTitle("Share Table");
+        main.setTitle("Share Table");
         setBounds(50, 50, 700, 500);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel1 = new JPanel();
         panel1.setBounds(0,0,200,400);
@@ -35,9 +40,5 @@ public class MainView extends JFrame{
         panel4.setBounds(200,400,500,100);
         panel4.setBackground(Color.CYAN);
         add(panel4);
-    }
-
-    public static void main(String[] args) {
-        new MainView();
     }
 }

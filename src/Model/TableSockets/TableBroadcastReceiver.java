@@ -24,7 +24,7 @@ public class TableBroadcastReceiver extends Thread {
         try {
             InetAddress group = InetAddress.getByName("228.5.6.8");
             MulticastSocket s = new MulticastSocket(6790);
-            byte[] arb = new byte[40960];
+            byte[] arb = new byte[409600];
             s.joinGroup(group);
             while (true) {
                 DatagramPacket datagramPacket = new DatagramPacket(arb, arb.length);
