@@ -29,8 +29,6 @@ public class MessageBroadcastReceiver extends Thread {
                 s.receive(datagramPacket);
                 messageController.setText(new String(arb));
             }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

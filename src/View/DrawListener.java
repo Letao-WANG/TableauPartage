@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Class of Listener
+ * Defines the command to be executed after the user operate
+ */
 public class DrawListener implements MouseListener, MouseMotionListener, ActionListener {
     private TableController tableController;
     private int x1, y1, x2, y2;
@@ -102,6 +106,10 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
     }
 
+    /**
+     * When the user drags on the board
+     * @param mouseEvent event
+     */
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
         if ("Brush".equals(name)) {
@@ -133,6 +141,10 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
 
     }
 
+    /**
+     * When the user clicks the button
+     * @param actionEvent event
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         // if user click color button
@@ -144,13 +156,12 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         // if user click undo button
         else if ("Undo".equals(actionEvent.getActionCommand())) {
             int length = tableController.getClientShapesIndex().size();
-            System.out.println("length : " + length);
             if(length == 0){
                 JOptionPane.showMessageDialog(null, "Cannot continue to Undo !");
             }
             else {
                 tableController.removeShape(tableController.getClientShapesIndex().get(length - 1));
-                tableController.removeLastShapeIndex(length - 1);
+                tableController.removeLastShapeIndex();
             }
         }
         // if user click shape button

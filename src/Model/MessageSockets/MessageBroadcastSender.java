@@ -28,8 +28,6 @@ public class MessageBroadcastSender extends Thread {
             DatagramPacket datagramPacket = new DatagramPacket(sendMessage.getBytes(), sendMessage.length(), inetAddress, port);
             MulticastSocket multicastSocket = new MulticastSocket();
             multicastSocket.send(datagramPacket);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

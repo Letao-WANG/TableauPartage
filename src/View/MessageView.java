@@ -27,7 +27,7 @@ public class MessageView extends JFrame{
         text.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if((char)e.getKeyChar()==KeyEvent.VK_ENTER) {
+                if(e.getKeyChar()==KeyEvent.VK_ENTER) {
                     messageController.sendMessage(text.getText());
                     text.setText("");
                     scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum());
@@ -51,7 +51,7 @@ public class MessageView extends JFrame{
         add(text);
 
         setLayout(null);
-        setBounds(0,0,200,500);
+        setBounds(50,50,200,500);
         getContentPane().setBackground(new Color(217, 217, 217));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

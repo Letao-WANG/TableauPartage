@@ -8,6 +8,7 @@ import java.io.*;
 public final class Util {
     /**
      * convert Object to byte[], which can be sent by UDP.
+     *
      * @param obj Shape for this case
      * @return byte data
      * @throws IOException
@@ -21,6 +22,7 @@ public final class Util {
 
     /**
      * convert byte[] to Object, which can be displayed in the view part.
+     *
      * @param data byte data
      * @return Shape for this case
      * @throws IOException

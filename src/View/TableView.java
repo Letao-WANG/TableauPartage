@@ -21,7 +21,7 @@ public class TableView extends JPanel {
         this.clientShapesIndex = new ArrayList<>();
 
         JFrame frame = new JFrame("Table");
-        frame.setSize(500, 500);
+        frame.setBounds(250, 50, 500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -85,7 +85,7 @@ public class TableView extends JPanel {
         clientShapesIndex.add(index);
     }
 
-    public void removeLastShapeIndex(int index) {
+    public void removeLastShapeIndex() {
         this.clientShapesIndex.remove(this.clientShapesIndex.size()-1);
     }
 

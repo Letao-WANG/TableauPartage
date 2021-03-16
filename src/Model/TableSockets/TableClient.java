@@ -1,10 +1,8 @@
 package Model.TableSockets;
 
 import Controller.TableController;
-import Model.Shapes.Line;
 import Model.Shapes.Shape;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;

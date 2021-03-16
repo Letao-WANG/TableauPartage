@@ -10,6 +10,5 @@ public class Text extends Shape{
     public void drawShape(Graphics g){
         g.setColor(color);
         g.drawString(name, x1, y1);
-
     }
 }

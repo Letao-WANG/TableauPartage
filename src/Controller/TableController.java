@@ -45,8 +45,8 @@ public class TableController {
         tableView.setLastShapeIndex(index);
     }
 
-    public void removeLastShapeIndex(int index) {
-        tableView.removeLastShapeIndex(index);
+    public void removeLastShapeIndex() {
+        tableView.removeLastShapeIndex();
     }
 
     public CopyOnWriteArrayList<Shape> getShapeList() {

@@ -29,8 +29,6 @@ public class MessageServer extends Thread {
                 message += info;
                 new MessageBroadcastSender(message).start();
             }
-        } catch (SocketException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

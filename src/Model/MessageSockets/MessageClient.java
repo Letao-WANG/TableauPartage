@@ -10,10 +10,12 @@ import java.net.*;
  * When a new user enters, chat information is shared with the other old users.
  */
 public class MessageClient extends Thread {
-    MessageController messageController;
+    private MessageController messageController;
+    private String name = "";
 
-    public MessageClient(MessageController messageController) {
+    public MessageClient(MessageController messageController, String name) {
         this.messageController = messageController;
+        this.name = name;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class MessageClient extends Thread {
         try {
             InetAddress address = InetAddress.getByName("localhost");
             int port = 8800;
-            String message = "Welcome to new user !" + "\n";
+            String message = "Welcome to " + name + " !" + "\n";
             byte[] data = message.getBytes();
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();
@@ -41,7 +43,7 @@ public class MessageClient extends Thread {
         try {
             InetAddress address = InetAddress.getByName("localhost");
             int port = 8800;
-            String message = "user says : " + mess + "\n";
+            String message = name + " says : " + mess + "\n";
             byte[] data = message.getBytes();
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();

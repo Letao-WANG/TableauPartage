@@ -2,7 +2,8 @@ package Controller;
 
 import Model.MessageSockets.MessageClient;
 import View.MessageView;
-import java.io.IOException;
+
+import javax.swing.*;
 
 /**
  * Controller Of Message
@@ -12,9 +13,10 @@ public class MessageController {
     private MessageClient client;
     private MessageView messageView;
 
-    public MessageController() throws IOException {
+    public MessageController() {
+        String name = JOptionPane.showInputDialog("Please enter your name :");
         this.messageView = new MessageView(this);
-        this.client = new MessageClient(this);
+        this.client = new MessageClient(this, name);
         client.start();
     }
 
@@ -26,7 +28,7 @@ public class MessageController {
         messageView.setText(text);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         new MessageController();
     }
 }

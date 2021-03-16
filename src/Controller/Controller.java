@@ -2,13 +2,14 @@ package Controller;
 
 import java.io.IOException;
 
+/**
+ * Create two new Controller, it is also the client used by the user
+ * TableController and MessageController
+ */
 public class Controller {
-    private TableController tableController;
-    private MessageController messageController;
-
     public Controller() throws IOException {
-        this.tableController = new TableController();
-        this.messageController = new MessageController();
+        new TableController();
+        new MessageController();
     }
 
     public static void main(String[] args) throws IOException {
