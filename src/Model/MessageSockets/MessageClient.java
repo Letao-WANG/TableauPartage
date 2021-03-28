@@ -1,6 +1,7 @@
 package Model.MessageSockets;
 
 import Controller.MessageController;
+import Model.Parameter;
 
 import java.io.IOException;
 import java.net.*;
@@ -27,8 +28,8 @@ public class MessageClient extends Thread {
          * Almost equal with sendMessage()
          */
         try {
-            InetAddress address = InetAddress.getByName("localhost");
-            int port = 8800;
+            InetAddress address = InetAddress.getByName(messageController.address);
+            int port = Parameter.messagePort;
             String message = "Welcome to " + name + " !" + "\n";
             byte[] data = message.getBytes();
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
@@ -41,8 +42,8 @@ public class MessageClient extends Thread {
 
     public void sendMessage(String mess) {
         try {
-            InetAddress address = InetAddress.getByName("localhost");
-            int port = 8800;
+            InetAddress address = InetAddress.getByName(messageController.address);
+            int port = Parameter.messagePort;
             String message = name + " says : " + mess + "\n";
             byte[] data = message.getBytes();
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);

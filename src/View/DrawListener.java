@@ -20,6 +20,7 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
     private String name;
     private Graphics g;
     private Color color;
+    private boolean shapeFull = true;
 
     public DrawListener(TableController tableController) {
         this.tableController = tableController;
@@ -85,12 +86,12 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             tableController.addShape(line);
         }
         if ("Rect".equals(name)) {
-            Shape rect = new Rect(x1, y1, x2, y2, name, color);
+            Shape rect = new Rect(x1, y1, x2, y2, name, color, shapeFull);
             tableController.setLastShapeIndex(tableController.getShapeList().size());
             tableController.addShape(rect);
         }
         if ("Oval".equals(name)) {
-            Shape oval = new Oval(x1, y1, x2, y2, name, color);
+            Shape oval = new Oval(x1, y1, x2, y2, name, color, shapeFull);
             tableController.setLastShapeIndex(tableController.getShapeList().size());
             tableController.addShape(oval);
         }
@@ -115,7 +116,6 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
         if ("Brush".equals(name)) {
             x2 = mouseEvent.getX();
             y2 = mouseEvent.getY();
-//            g.drawLine(x1, y1, x2, y2);
             Shape line = new Line(x1, y1, x2, y2, name, color);
             tableController.addShape(line);
             x1 = x2;
@@ -127,12 +127,10 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
             ((Graphics2D) g).setStroke(new BasicStroke(20));
             x2 = mouseEvent.getX();
             y2 = mouseEvent.getY();
-//            g.drawLine(x1, y1, x2, y2);
             Shape line = new Line(x1, y1, x2, y2, name, Color.white);
             tableController.addShape(line);
             x1 = x2;
             y1 = y2;
-//            ((Graphics2D) g).setStroke(new BasicStroke(1));
         }
     }
 
@@ -163,6 +161,16 @@ public class DrawListener implements MouseListener, MouseMotionListener, ActionL
                 tableController.removeShape(tableController.getClientShapesIndex().get(length - 1));
                 tableController.removeLastShapeIndex();
             }
+        }
+        else if ("Full ".equals(actionEvent.getActionCommand())) {
+            JButton button = (JButton) actionEvent.getSource();
+          button.setText("Empty");
+            this.shapeFull = false;
+        }
+        else if ("Empty".equals(actionEvent.getActionCommand())) {
+            JButton button = (JButton) actionEvent.getSource();
+            button.setText("Full ");
+            this.shapeFull = true;
         }
         // if user click shape button
         else {

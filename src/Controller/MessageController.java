@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.MessageSockets.MessageClient;
+import Model.Parameter;
 import View.MessageView;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import javax.swing.*;
  * Multiple MessageController can exist at the same time
  */
 public class MessageController {
+    public static String address = Parameter.address;
     private MessageClient client;
     private MessageView messageView;
 

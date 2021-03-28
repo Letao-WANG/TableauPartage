@@ -1,5 +1,6 @@
 package Model.TableSockets;
 
+import Model.Parameter;
 import Model.Shapes.Shape;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class TableServer extends Thread {
         CopyOnWriteArrayList<Shape> shapeList = new CopyOnWriteArrayList<>();
 
         try {
-            DatagramSocket socket = new DatagramSocket(8900);
+            DatagramSocket socket = new DatagramSocket(Parameter.tablePort);
             byte[] data = new byte[409600];
             DatagramPacket packet = new DatagramPacket(data, data.length);
 

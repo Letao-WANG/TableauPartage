@@ -1,10 +1,11 @@
 package Model.MessageSockets;
 
+import Model.Parameter;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.net.UnknownHostException;
 
 /**
  * After the UDP signal from the client is detected in Server,
@@ -22,9 +23,9 @@ public class MessageBroadcastSender extends Thread {
 
     @Override
     public void run() {
-        int port = 6789;
+        int port = Parameter.messagePortBroadcast;
         try {
-            InetAddress inetAddress = InetAddress.getByName("228.5.6.7");
+            InetAddress inetAddress = InetAddress.getByName(Parameter.messageAddressBroadcast);
             DatagramPacket datagramPacket = new DatagramPacket(sendMessage.getBytes(), sendMessage.length(), inetAddress, port);
             MulticastSocket multicastSocket = new MulticastSocket();
             multicastSocket.send(datagramPacket);

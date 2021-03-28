@@ -1,5 +1,6 @@
 package Model.TableSockets;
 
+import Model.Parameter;
 import Model.Shapes.Shape;
 
 import java.io.IOException;
@@ -25,9 +26,9 @@ public class TableBroadcastSender extends Thread {
 
     @Override
     public void run() {
-        int port = 6790;
+        int port = Parameter.tablePortBroadcast;
         try {
-            InetAddress inetAddress = InetAddress.getByName("228.5.6.8");
+            InetAddress inetAddress = InetAddress.getByName(Parameter.tableAddressUDP);
             byte[] data = Util.serialize(shapeList);
             DatagramPacket datagramPacket = new DatagramPacket(data, data.length, inetAddress, port);
             MulticastSocket multicastSocket = new MulticastSocket();

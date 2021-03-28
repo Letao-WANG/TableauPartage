@@ -21,7 +21,7 @@ public class TableView extends JPanel {
         this.clientShapesIndex = new ArrayList<>();
 
         JFrame frame = new JFrame("Table");
-        frame.setBounds(250, 50, 500, 500);
+        frame.setBounds(250, 50, 600, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -38,7 +38,7 @@ public class TableView extends JPanel {
         frame.add(panelColor, BorderLayout.SOUTH);
 
         // Add shape button
-        String[] shapes = {"Line", "Rect", "Oval", "Brush", "Text", "Eraser", "Free Eraser", "Undo"};
+        String[] shapes = {"Line", "Rect", "Oval", "Full ", "Brush", "Text", "Eraser", "Free Eraser", "Undo"};
         for (String shape : shapes) {
             // create button
             JButton button = new JButton(shape);

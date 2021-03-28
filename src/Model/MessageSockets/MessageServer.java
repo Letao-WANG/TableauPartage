@@ -1,5 +1,7 @@
 package Model.MessageSockets;
 
+import Model.Parameter;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.io.IOException;
@@ -16,7 +18,7 @@ public class MessageServer extends Thread {
          */
         String message = "Welcome to chatroom :\n";
         try {
-            DatagramSocket socket = new DatagramSocket(8800);
+            DatagramSocket socket = new DatagramSocket(Parameter.messagePort);
             byte[] data = new byte[1024];
             DatagramPacket packet = new DatagramPacket(data, data.length);
 

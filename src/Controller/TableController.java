@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Parameter;
 import Model.Shapes.Shape;
 import Model.TableSockets.TableClient;
 import View.TableView;
@@ -12,6 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Multiple TableController can exist at the same time
  */
 public class TableController {
+    public static String address = Parameter.address;
     private TableView tableView;
     private TableClient tableClient;
 

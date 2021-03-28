@@ -1,6 +1,7 @@
 package Model.TableSockets;
 
 import Controller.TableController;
+import Model.Parameter;
 import Model.Shapes.Shape;
 
 import java.io.IOException;
@@ -31,8 +32,8 @@ public class TableClient extends Thread {
 
     public void addShape(Shape shape) {
         try {
-            InetAddress address = InetAddress.getByName("localhost");
-            int port = 8900;
+            InetAddress address = InetAddress.getByName(tableController.address);
+            int port = Parameter.tablePort;
             byte[] data = Util.serialize(shape);
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();
@@ -44,8 +45,8 @@ public class TableClient extends Thread {
 
     public void removeShape(int index){
         try {
-            InetAddress address = InetAddress.getByName("localhost");
-            int port = 8900;
+            InetAddress address = InetAddress.getByName(tableController.address);
+            int port = Parameter.tablePort;
             byte[] data = Util.serialize(index);
             DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
             DatagramSocket socket = new DatagramSocket();

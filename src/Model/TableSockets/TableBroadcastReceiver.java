@@ -1,6 +1,7 @@
 package Model.TableSockets;
 
 import Controller.TableController;
+import Model.Parameter;
 import Model.Shapes.Shape;
 
 import java.io.IOException;
@@ -22,8 +23,8 @@ public class TableBroadcastReceiver extends Thread {
     @Override
     public void run() {
         try {
-            InetAddress group = InetAddress.getByName("228.5.6.8");
-            MulticastSocket s = new MulticastSocket(6790);
+            InetAddress group = InetAddress.getByName(Parameter.tableAddressUDP);
+            MulticastSocket s = new MulticastSocket(Parameter.tablePortBroadcast);
             byte[] arb = new byte[409600];
             s.joinGroup(group);
             while (true) {
